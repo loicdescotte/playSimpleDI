@@ -15,4 +15,4 @@ trait Application extends Controller {
 
 }
 
-object Application extends Application with ApplicationServices
+object Application extends Application with ServicesComponent

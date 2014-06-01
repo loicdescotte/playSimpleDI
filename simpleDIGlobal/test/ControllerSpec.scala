@@ -15,8 +15,8 @@ import controllers._
 class ControllerSpec extends Specification with Mockito {
 
   val mockServices = new ServicesComponent {
-    val logService = mock[LogService]
-    val linkService = {
+    override val logService = mock[LogService]
+    override val linkService = {
       val mockLinkService = mock[LinkService]
       mockLinkService.findLinks("hello") returns Future("http://coucou.com")
       mockLinkService

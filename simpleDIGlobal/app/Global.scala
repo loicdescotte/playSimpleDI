@@ -5,7 +5,7 @@ import services._
 
 object Global extends GlobalSettings {
 
-  val services = new ApplicationServices
+  val services = new ServicesComponent
   val applicationController = new Application(services)
   val instanceMaps: Map[Class[_], AnyRef] = Map(classOf[Application] -> applicationController)
 

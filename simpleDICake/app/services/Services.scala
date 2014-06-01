@@ -4,21 +4,15 @@ import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
 import play.api.Play.current
 
-trait ServicesComponent {
-  val linkService: LinkService
-  val logService: LogService
+class LogService{
+  import play.api.Logger
+
+  def log(message: String) {
+    Logger.info(message)
+  }
 }
 
-trait LinkService {
-  def findLinks(query: String): Future[String]
-}
-
-trait LogService {
-  def log(message: String): Unit
-}
-
-
-class DuckDuckLinksService(logService: LogService) extends LinkService {
+class LinkService(logService: LogService){
   import play.api.libs.ws.WS
 
   def findLinks(query: String) = {
@@ -33,15 +27,7 @@ class DuckDuckLinksService(logService: LogService) extends LinkService {
   }
 }
 
-class SimpleLogService extends LogService{
-  import play.api.Logger
-
-  def log(message: String) {
-    Logger.info(message)
-  }
-}
-
-trait ApplicationServices extends ServicesComponent {
-  val logService = new SimpleLogService
-  val linkService = new DuckDuckLinksService(logService)
+trait ServicesComponent{
+  val logService = new LogService
+  val linkService = new LinkService(logService)
 }
