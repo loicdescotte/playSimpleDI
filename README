@@ -1,1 +1,3 @@
 Simple dependency injection examples with Play Framework without DI framework, just Scala code
+
+The code is explained in this blog post : http://coffeebean.loicdescotte.com/2014/06/simple-dependency-injection-with-play.html
