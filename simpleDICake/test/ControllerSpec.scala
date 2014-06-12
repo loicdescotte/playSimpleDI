@@ -27,8 +27,8 @@ class ControllerSpec extends Specification with Mockito {
 
     "display query results" in {
 
-      object appController extends Application with MockServices
-      val response = appController.findLinks("hello")(FakeRequest())
+      object Application extends ApplicationController with MockServices
+      val response = Application.findLinks("hello")(FakeRequest())
       
       status(response) must equalTo(OK)
       contentType(response) must beSome("text/html")

@@ -5,7 +5,7 @@ import play.api.mvc._
 import services._
 import scala.concurrent.ExecutionContext.Implicits.global
 
-trait Application extends Controller {
+trait ApplicationController extends Controller {
   this : ServicesComponent =>
 
   def findLinks(query: String) = Action.async {
@@ -15,4 +15,4 @@ trait Application extends Controller {
 
 }
 
-object Application extends Application with ServicesComponent
+object Application extends ApplicationController with ServicesComponent

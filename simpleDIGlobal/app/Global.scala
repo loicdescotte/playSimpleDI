@@ -6,8 +6,7 @@ import services._
 object Global extends GlobalSettings {
 
   val services = new ServicesComponent
-  val applicationController = new Application(services)
-  val instanceMaps: Map[Class[_], AnyRef] = Map(classOf[Application] -> applicationController)
+  val instanceMaps: Map[Class[_], AnyRef] = Map(classOf[Application] -> new Application(services))
 
   override def getControllerInstance[A](controllerClass: Class[A]) = instanceMaps(controllerClass).asInstanceOf[A]
 
